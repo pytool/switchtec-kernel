@@ -28,11 +28,7 @@
 #include <linux/version.h>
 
 #include "version.h"
-
-#if ( LINUX_VERSION_CODE >= KERNEL_VERSION(5,0,0) )
-#ifndef dma_zalloc_coherent
-#define dma_zalloc_coherent(d, s, h, f) dma_alloc_coherent(d, s, h, f)
-#endif
+#include "switchtec_sg.h"
 
 MODULE_DESCRIPTION("Microsemi Switchtec(tm) PCIe Management Driver");
 MODULE_VERSION(VERSION);
@@ -1803,7 +1799,7 @@ static void switchtec_pci_error_resume(struct pci_dev *pdev)
 
 	dev_info(&stdev->dev, "resume.\n");
 	// pci_cleanup_aer_uncorrect_error_status(pdev);
-	#if KERNEL_VERSION(5,7,0) <= LINUX_VERSION_CODE || defined(RHEL_MAJOR) && RHEL_RELEASE_VERSION(8,3) <= RHEL_RELEASE_CODE
+	#if KERNEL_VERSION(5,7,0) <= LINUX_VERSION_CODE
 		pci_aer_clear_nonfatal_status(pdev);
 	#else
 		pci_cleanup_aer_uncorrect_error_status(pdev);

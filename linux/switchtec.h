@@ -16,6 +16,12 @@
 #ifndef _SWITCHTEC_H
 #define _SWITCHTEC_H
 
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 0, 0))
+	#ifndef dma_zalloc_coherent
+	#define dma_zalloc_coherent(d, s, h, f) dma_alloc_coherent(d, s, h, f)
+	#endif
+#endif
+
 #include <linux/pci.h>
 #include <linux/cdev.h>
 
