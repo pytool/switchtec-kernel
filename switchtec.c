@@ -25,7 +25,6 @@
 #include <linux/io-64-nonatomic-lo-hi.h>
 #include <linux/nospec.h>
 #include <linux/aer.h>
-#include <linux/version.h>
 
 #include "version.h"
 #include "switchtec_sg.h"
